@@ -1,0 +1,196 @@
+{
+    "config": {
+        "atomic_number_map": [
+            1,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14,
+            15,
+            16,
+            17,
+            19,
+            20,
+            35,
+            53
+        ],
+        "compile": false,
+        "compute_forces": true,
+        "datamodule": {
+            "atomic_numbers_col": "physicsml_atom_numbers",
+            "cell": null,
+            "coordinates_col": "physicsml_coordinates",
+            "cut_off": 1.0,
+            "edge_attrs_col": "physicsml_bond_features",
+            "edge_idxs_col": "physicsml_bond_idxs",
+            "max_nbins": 1000000,
+            "node_attrs_col": "physicsml_atom_features",
+            "node_idxs_col": "physicsml_atom_idxs",
+            "num_elements": 17,
+            "num_workers": 4,
+            "pbc": null,
+            "pre_batch": null,
+            "pre_batch_in_memory": false,
+            "predict": {
+                "batch_size": 1
+            },
+            "self_interaction": false,
+            "test": {
+                "batch_size": 1,
+                "mode": "max_size"
+            },
+            "total_atomic_energy_col": "physicsml_total_atomic_energy",
+            "train": {
+                "batch_size": 64,
+                "drop_last": true,
+                "mode": "max_size_cycle"
+            },
+            "train_batch_size": null,
+            "use_scaled_positions": false,
+            "validation": {
+                "batch_size": 64,
+                "mode": "max_size"
+            },
+            "validation_batch_size": null,
+            "y_edge_scalars": null,
+            "y_edge_vector": null,
+            "y_graph_scalars": [
+                "formation_energy"
+            ],
+            "y_graph_vector": null,
+            "y_node_scalars": null,
+            "y_node_vector": "forces"
+        },
+        "embedding_mlp_hidden_dims": [
+            128
+        ],
+        "float32_matmul_precision": null,
+        "interaction_mlp_hidden_dims": [
+            256,
+            512
+        ],
+        "num_edge_feats": 0,
+        "num_features": 256,
+        "num_interaction_layers": 1,
+        "num_node_feats": 18,
+        "num_radial": 64,
+        "optimizer": {
+            "config": {
+                "lr": 0.0005
+            },
+            "name": "AdamW"
+        },
+        "scalar_output_mlp_hidden_dims": [
+            256,
+            128
+        ],
+        "scaling_mean": 0.0,
+        "scaling_std": 1.0,
+        "scheduler": {
+            "config": {
+                "factor": 0.8,
+                "min_lr": 1e-05,
+                "patience": 0,
+                "threshold": 0.001
+            },
+            "frequency": 1,
+            "interval": "epoch",
+            "monitor": "val/total/loss",
+            "name": "ReduceLROnPlateau",
+            "strict": true
+        },
+        "train_features": null,
+        "trainer": {
+            "accelerator": "auto",
+            "accumulate_grad_batches": 1,
+            "barebones": false,
+            "benchmark": null,
+            "callbacks": [
+                {
+                    "config": {
+                        "logging_interval": "epoch"
+                    },
+                    "name": "LearningRateMonitor"
+                },
+                {
+                    "config": {
+                        "auto_insert_metric_name": false,
+                        "dirpath": "logs-small",
+                        "every_n_epochs": 1,
+                        "filename": "epoch={epoch}-val={val/total/loss:.2f}",
+                        "monitor": "val/total/loss",
+                        "save_top_k": 2
+                    },
+                    "name": "ModelCheckpoint"
+                },
+                {
+                    "config": {
+                        "monitor": "val/total/loss",
+                        "patience": 10
+                    },
+                    "name": "EarlyStopping"
+                }
+            ],
+            "check_val_every_n_epoch": 1,
+            "default_root_dir": "logs-small",
+            "detect_anomaly": false,
+            "deterministic": null,
+            "devices": "auto",
+            "enable_checkpointing": true,
+            "enable_model_summary": true,
+            "enable_progress_bar": true,
+            "fast_dev_run": false,
+            "gradient_clip_algorithm": null,
+            "gradient_clip_val": null,
+            "inference_mode": true,
+            "limit_predict_batches": null,
+            "limit_test_batches": null,
+            "limit_train_batches": null,
+            "limit_val_batches": null,
+            "log_every_n_steps": 50,
+            "logger": true,
+            "max_epochs": 100,
+            "max_steps": -1,
+            "max_time": null,
+            "min_epochs": null,
+            "min_steps": null,
+            "num_nodes": 1,
+            "num_sanity_val_steps": null,
+            "overfit_batches": 0.0,
+            "precision": 32,
+            "profiler": null,
+            "reload_dataloaders_every_n_epochs": 0,
+            "strategy": "auto",
+            "sync_batchnorm": false,
+            "use_distributed_sampler": true,
+            "val_check_interval": null
+        },
+        "transfer_learning": null,
+        "x_features": [
+            "physicsml_atom_numbers",
+            "physicsml_coordinates",
+            "physicsml_atom_features"
+        ],
+        "y_features": [
+            "formation_energy",
+            "forces"
+        ],
+        "y_graph_scalars_loss_config": {
+            "name": "MSELoss",
+            "weight": 1.0
+        },
+        "y_node_scalars_loss_config": null,
+        "y_node_vector_loss_config": {
+            "name": "MSELoss",
+            "weight": 0.01
+        }
+    },
+    "name": "zbl_tensor_net_model",
+    "tag": "zbl_tensor_net_model",
+    "version": "0.3.0"
+}
