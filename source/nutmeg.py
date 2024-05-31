@@ -41,9 +41,6 @@ class Nutmeg(torch.nn.Module):
         else:
             cell = boxvectors.to(torch.float32)
             pbc = (True, True, True)
-            positions = positions - torch.outer(torch.floor(positions[:,2]/cell[2,2]), cell[2])
-            positions = positions - torch.outer(torch.floor(positions[:,1]/cell[1,1]), cell[1])
-            positions = positions - torch.outer(torch.floor(positions[:,0]/cell[0,0]), cell[0])
         edge_index, edge_attrs, cell_shift_vector = construct_edge_indices_and_attrs(
                 positions=positions, cutoff=self.cutoff, initial_edge_indices=None, initial_edge_attrs=None,
                 pbc=pbc, cell=cell, self_interaction=self.self_interaction)
