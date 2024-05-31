@@ -1,5 +1,6 @@
 import openmmml
 from .nutmegpotential import NutmegPotentialImplFactory
+from .nutmegcalculator import NutmegCalculator
 
 openmmml.mlpotential.MLPotential.registerImplFactory('nutmeg-small', NutmegPotentialImplFactory())
 openmmml.mlpotential.MLPotential.registerImplFactory('nutmeg-medium', NutmegPotentialImplFactory())
