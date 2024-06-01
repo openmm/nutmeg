@@ -1,10 +1,26 @@
 import ase
 import torch
 import os
+from typing import List
 
 class NutmegCalculator(ase.calculators.calculator.Calculator):
+    """This an an ASE Calculator for performing calculations with the Nutmeg models."""
 
     def __init__(self, modelname, atoms, charges, device):
+        """
+        Construct a Calculator for one of the Nutmeg models.
+
+        Parameters
+        ----------
+        modelname: str
+            the name of the model.  This must be either 'nutmeg-small', 'nutmeg-medium', or 'nutmeg-large'.
+        atoms: ase.Atoms
+            the ASE Atoms object to simulate.  It must contain atomic symbols.
+        charges: array
+            Gasteiger partial charges for the atoms.
+        device: torch.Device
+            the device on which to perform calculations
+        """
         super().__init__()
         self.implemented_properties: List[str] = ["energy", "forces"]
         self.atoms = atoms

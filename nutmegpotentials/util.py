@@ -1,5 +1,3 @@
-import torch
-
 def create_atom_features(symbols, charges):
     """This utility function creates the input tensors that need to be passed
     to a Nutmeg model's forward() method to describe the atoms.
@@ -18,6 +16,7 @@ def create_atom_features(symbols, charges):
     node_attrs: torch.Tensor
         the feature vector for each atom
     """
+    import torch
     typeDict = {'H': 0, 'Li': 1, 'B': 2, 'C': 3, 'N': 4, 'O': 5, 'F': 6, 'Na': 7, 'Mg': 8, 'Si': 9, 'P': 10, 'S': 11, 'Cl': 12, 'K': 13, 'Ca': 14, 'Br': 15, 'I': 16}
     types = torch.tensor([typeDict[symbol] for symbol in symbols], dtype=torch.int64)
     one_hot_z = torch.nn.functional.one_hot(types, num_classes=17).to(torch.float32)

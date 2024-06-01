@@ -11,12 +11,10 @@ class NutmegPotentialImplFactory(MLPotentialImplFactory):
 
 
 class NutmegPotentialImpl(MLPotentialImpl):
-    """This is the MLPotentialImpl implementing the Nutmeg models.
-    """
+    """This is the MLPotentialImpl implementing the Nutmeg models."""
 
     def __init__(self, name):
         self.name = name
-
 
     def addForces(self,
                   topology: openmm.app.Topology,
@@ -35,7 +33,7 @@ class NutmegPotentialImpl(MLPotentialImpl):
             charges = args['charges']
         else:
             from rdkit import Chem
-            from rdkit.Chem import AllChem, rdDetermineBonds, rdPartialCharges
+            from rdkit.Chem import rdDetermineBonds, rdPartialCharges
             rdmol = Chem.EditableMol(Chem.Mol())
             for atom in topology.atoms():
                 a = Chem.Atom(atom.element.atomic_number)
