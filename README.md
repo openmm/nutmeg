@@ -62,7 +62,6 @@ The positions and box vectors (if present) must also be passed as Pytorch tensor
 ```python
 from nutmegpotentials import create_atom_features
 types, node_attrs = create_atom_features(symbols, charges)
-import torch
 positions = torch.tensor(positions, dtype=torch.float32)
 ```
 
@@ -82,6 +81,7 @@ This package includes a potential function for use with OpenMM-ML.  Simply speci
 the name of the model to use.
 
 ```python
+import nutmegpotentials
 from openmmml import MLPotential
 potential = MLPotential('nutmeg-small')
 ```
@@ -100,6 +100,9 @@ that case you only need to provide the total charge of the system as an integer.
 ```python
 system = potential.createSystem(topology, total_charge=0)
 ```
+
+You can also create mixed systems in which part is modelled with a Nutmeg model and part
+with a conventional force field.  See the OpenMM-ML documentation for details.
 
 ## Usage: ASE
 

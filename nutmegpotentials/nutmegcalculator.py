@@ -1,4 +1,4 @@
-import ase
+import ase.calculators.calculator
 import torch
 import os
 from typing import List
