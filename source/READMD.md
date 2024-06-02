@@ -20,6 +20,9 @@ This directory contains the following.
 - `convert_to_torchscript.py`.  This script loads in each of the checkpoints, converts
   it to TorchScript, and saves it to a file.  It was used to generate the models in
   the `nutmegpotentials` module.
+- `create_dataset.py`.  This script was used to convert the SPICE dataset to the format
+  needed by PhysicsML.  It also computes partial charges and generates the split between
+  training and validation sets.
 
 These files have been confirmed to work with PhysicsML 0.3.1, which was used to create
 the TorchScript files.  They may also work with later versions, but that cannot be
