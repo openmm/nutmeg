@@ -45,7 +45,7 @@ class NutmegPotentialImpl(MLPotentialImpl):
             Chem.SanitizeMol(rdmol)
             rdDetermineBonds.DetermineBondOrders(rdmol, args['total_charge'], embedChiral=False)
             rdPartialCharges.ComputeGasteigerCharges(rdmol)
-            charges = [a.GetDoubleProp('_GasteigerCharge') for a in rdmol.GetAtoms()]
+            charges = [rdmol.GetAtomWithIdx(atom.index).GetDoubleProp('_GasteigerCharge') for atom in includedAtoms]
         symbols = [atom.element.symbol for atom in includedAtoms]
         types, node_attrs = create_atom_features(symbols, charges)
         model = torch.jit.load(os.path.join(os.path.dirname(__file__), 'models', f'{self.name}.pt'))
