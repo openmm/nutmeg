@@ -1,6 +1,11 @@
 # Nutmeg Potentials
 
-This repository contains the Nutmeg machine learning potentials described in ...
+This repository contains the Nutmeg machine learning potentials described in
+
+Peter Eastman, Benjamin P. Pritchard, John D. Chodera, Thomas E. Markland.
+"Nutmeg and SPICE: Models and Data for Biomolecular Machine Learning."
+https://arxiv.org/abs/2406.13112
+
 They are made available in several formats.
 
 1. Pytorch models in TorchScript format
@@ -40,7 +45,7 @@ Each model requires the following information as inputs.
   partial charges will probably not produce accurate results and should not be used.
 - The periodic box vectors in nm, if periodic boundary conditions are to be applied.
 
-The following examples uses RDKit to construct an alanine molecule from a SMILES string and
+The following example uses RDKit to construct an alanine molecule from a SMILES string and
 compute the necessary information.
 
 ```python
