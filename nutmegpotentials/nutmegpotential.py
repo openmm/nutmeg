@@ -42,6 +42,7 @@ class NutmegPotentialImpl(MLPotentialImpl):
             for bond in topology.bonds():
                 rdmol.AddBond(bond[0].index, bond[1].index, Chem.BondType.SINGLE)
             rdmol = rdmol.GetMol()
+            Chem.SanitizeMol(rdmol)
             rdDetermineBonds.DetermineBondOrders(rdmol, args['total_charge'], embedChiral=False)
             rdPartialCharges.ComputeGasteigerCharges(rdmol)
             charges = [a.GetDoubleProp('_GasteigerCharge') for a in rdmol.GetAtoms()]
