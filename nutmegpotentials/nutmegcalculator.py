@@ -24,7 +24,7 @@ class NutmegCalculator(ase.calculators.calculator.Calculator):
         super().__init__()
         self.implemented_properties: List[str] = ["energy", "forces"]
         self.atoms = atoms
-        model = torch.jit.load(os.path.join(os.path.dirname(__file__), 'models', f'{modelname}.pt'))
+        model = torch.jit.freeze(torch.jit.load(os.path.join(os.path.dirname(__file__), 'models', f'{modelname}.pt')).eval().to(device))
         self.model = model.to(device)
         self.device = device
         from .util import create_atom_features
