@@ -2,9 +2,8 @@
 
 This repository contains the Nutmeg machine learning potentials described in
 
-Peter Eastman, Benjamin P. Pritchard, John D. Chodera, Thomas E. Markland.
-"Nutmeg and SPICE: Models and Data for Biomolecular Machine Learning."
-https://arxiv.org/abs/2406.13112
+Peter Eastman, Benjamin P. Pritchard, John D. Chodera, Thomas E. Markland.  "Nutmeg and SPICE: Models and Data for
+Biomolecular Machine Learning."  J. Chem. Theory Comput. 20, 19, 8583-8593 (2024).  https://doi.org/10.1021/acs.jctc.4c00794
 
 They are made available in several formats.
 
